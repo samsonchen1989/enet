@@ -1197,7 +1197,8 @@ enet_protocol_receive_incoming_commands (ENetHost * host, ENetEvent * event)
 {
     int packets;
 
-    for (packets = 0; packets < 256; ++ packets)
+    // Change up packet received limit per host_service loop
+    for (packets = 0; packets < 1024; ++ packets)
     {
        int receivedLength;
        ENetBuffer buffer;

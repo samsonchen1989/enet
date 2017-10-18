@@ -341,6 +341,10 @@ enet_host_bandwidth_throttle (ENetHost * host)
     if (elapsedTime < ENET_HOST_BANDWIDTH_THROTTLE_INTERVAL)
       return;
 
+    // skip bandwidth throttle processig in case if unlimited in&out bandwidth
+    if (host -> outgoingBandwidth == 0 && host -> incomingBandwidth == 0 )
+      return;
+
     host -> bandwidthThrottleEpoch = timeCurrent;
 
     if (peersRemaining == 0)
